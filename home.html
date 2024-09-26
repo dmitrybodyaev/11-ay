@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Туристическое агентство</title>
+  <style>
+    /* Общие стили */
+    body {
+      background: linear-gradient(to top, #869bac, #dbdbdb);
+      padding: 0%;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      margin: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color:  #8193a1;
+      color: rgb(0, 0, 0);
+      text-align: center;
+      padding: 2%;
+      
+    }
+    main {
+      padding: 20px;
+    }
+    .calc{
+      border: 2px solid #9b9581;
+      background-color: rgb(255, 255, 255);
+      display: flex;
+      flex-direction: column;
+      padding: 1% 2% 1% 2%;
+      margin: 2% auto;
+    }
+    .destination {
+      margin-bottom: 20px;
+    }
+    .chart_wrap{
+      background-color: #333;
+      color:rgb(126, 105, 78);
+      order: 2px solid #9b9581;
+    }
+    .svg{
+      padding: 1% 1% 1% 1%;
+      margin: 2% auto;
+      text-align: center;
+    }
+    form {
+      display: inline-block;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      margin-bottom: 10px;
+    }
+    button {
+      margin-top: 10px;
+    }
+
+    /* Стили для различных размеров экранов */
+    @media only screen and (max-width: 600px) {
+      header {
+        font-size: 1.5em;
+      }
+    }
+
+    @media only screen and (min-width: 601px) and (max-width: 1024px) {
+      header {
+        font-size: 2em;
+      }
+    }
+
+    @media only screen and (min-width: 1025px) {
+      header {
+        font-size: 2.5em;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Добро пожаловать в туристическое агентство</h1>
+    <p >Выберите свое следующее приключение!</p>
+  </header>
+  <main>
+    <div class="destination">
+      <h2>Париж, Франция</h2>
+      <img src="paris.jpg" alt="Париж, Франция" width="50%" height="20%">
+      <p style="font-size: 150%;">Романтический отдых в столице любви.</p>
+    </div>
+    <!-- диаграмма -->
+    <h2>Узнайте стоимость поездок во Францию за последние года!</h2>
+    <div id="container" class="chart_wrap" style="width:80%; height:30%; margin:0 auto; color: #a7977b;"></div>
+    <h2>Хотите посмотреть какие места более популярны?</h2>
+    <div id="container0" class="chart_wrap" style="width:80%; height:30%; margin:0 auto; color: #a7977b;"></div>
+
+    <div class="destination">
+      <h2>Токио, Япония</h2>
+      <img src="tokyo.jpg" alt="Токио, Япония" width="50%" height="20%">
+      <p style="font-size: 150%;">Исследуйте современные технологии и традиционную японскую культуру.</p>
+    </div>
+    <!-- диаграмма -->
+    <h2>Посмотрим, в какое время года больше всего туристов</h2>
+    <div id="container1" class="chart_wrap" style="width:80%; height:30%; margin:0 auto; color: #a7977b;"></div>
+    <h2>На что же уходил основной бюджет для поездки?</h2>
+    <div id="container2" class="chart_wrap" style="width:80%; height:30%; margin:0 auto; color: #a7977b;"></div>
+  
+  
+  <h2>Калькулятор стоимости тура</h2>
+  <div class="calc">
+  <form id="calculator">
+    <label for="flight">Стоимость авиабилетов:</label>
+    <input type="number" id="flight" min="0" required><br><br>
+
+    <label for="hotel">Стоимость отеля:</label>
+    <input type="number" id="hotel" min="0" required><br><br>
+
+    <label for="carRental">Стоимость аренды автомобиля:</label>
+    <input type="number" id="carRental" min="0" required><br><br>
+
+    <button type="button" onclick="calculateTotal()">Рассчитать</button><br><br>
+
+    <label for="total">Итоговая стоимость тура:</label>
+    <input type="text" id="total" readonly>
+  </form></div>
+</main>
+  <script>
+    function calculateTotal() {
+      const flightCost = parseFloat(document.getElementById('flight').value);
+      const hotelCost = parseFloat(document.getElementById('hotel').value);
+      const carRentalCost = parseFloat(document.getElementById('carRental').value);
+
+      if (isNaN(flightCost) || isNaN(hotelCost) || isNaN(carRentalCost)) {
+        alert('Пожалуйста, введите числовые значения для всех полей.');
+        return;
+      }
+
+      const totalCost = flightCost + hotelCost + carRentalCost;
+      document.getElementById('total').value = totalCost;
+    }
+  </script>
+  
+  <div class="svg" style="width: 20%; height: 20%">
+
+    <svg version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 182.267 182.267" style="enable-background:new 0 0 182.267 182.267;" xml:space="preserve">
+      <path id="check" fill="none" stroke="black" stroke-dasharray="2260" stroke-dashoffset="0"  
+      d="M161.33,169.967H20.938C9.393,169.967,0,160.574,0,149.029V58.335c0-11.545,9.393-20.938,20.938-20.938h41.513V27.55 c0-8.409,6.841-15.25,15.25-15.25h26.866c8.409,0,15.25,6.841,15.25,15.25v9.848h41.513c11.545,0,20.938,9.393,20.938,20.938v90.694 C182.267,160.574,172.875,169.967,161.33,169.967z M151.878,164.967h9.451c8.788,0,15.938-7.149,15.938-15.938V58.335 c0-8.788-7.149-15.938-15.938-15.938h-9.451V164.967z M130.896,164.967h15.982V42.398h-15.982V164.967z M56.372,164.967h69.524 V42.398H56.372V164.967z M35.389,164.967h15.983V42.398H35.389V164.967z M20.938,42.398C12.149,42.398,5,49.547,5,58.335v90.694 c0,8.788,7.149,15.938,15.938,15.938h9.451V42.398H20.938z M67.451,37.398h47.366V27.55c0-5.652-4.598-10.25-10.25-10.25H77.701 c-5.652,0-10.25,4.598-10.25,10.25V37.398z">
+      <animate id="p1" attributeName="stroke-dashoffset" begin="svg1.click" values="2260; 0" dur="10s" repeatCount="1" fill="freeze" calcMode="linear"></animate>
+    
+    </path>
+    </svg>
+
+  </div>
+  <footer>
+    <p>&copy; 2024 Туристическое агентство</p>
+  </footer>
+</body>
+<script src="script.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="script.js"></script>
+</html>
